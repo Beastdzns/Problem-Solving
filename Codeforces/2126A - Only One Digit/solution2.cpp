@@ -8,12 +8,14 @@ int main() {
     int t;
     cin >> t;
     while(t--){
-        string s;
-        cin >> s;
-        char ans = '9';
-        for(const auto& x: s){
-            ans = min(ans, x);
+        int x;
+        cin >> x;
+        set<int> sol;
+        while(x > 0) {
+            sol.insert(x % 10);
+            x /= 10;
         }
+        int ans = *sol.begin();
         cout << ans << endl;
     }
     return 0;
