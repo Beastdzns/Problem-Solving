@@ -93,3 +93,35 @@ public:
     }
 };
 ```
+
+### Approach 4 (using Monotonic Deque)
+
+```cpp
+class Solution {
+public:
+    vector<int> resultsArray(vector<int>& nums, int k) {
+        vector<int> res;
+        int n = nums.size();
+
+        deque<int> deq; // Monotonic Deque
+
+        for(int i=0;i<n;i++){
+            if(deq.size() == k)
+                deq.pop_front();
+            
+            if(!deq.empty() && deq.back() != nums[i] - 1)
+                deq.clear();
+            
+            deq.push_back(nums[i]);
+
+            if(i >= k-1){
+                if(deq.size() >= k)
+                    res.push_back(nums[i]);
+                else
+                    res.push_back(-1);
+            }
+        }
+        return res;
+    }
+};
+```
