@@ -1,6 +1,6 @@
 ## Solution
 
-### Approach 1 (Brute Force) - Time Complexity
+### Approach 1 (Brute Force) - Time Complexity Exceeded
 
 ```cpp
 class Solution {
