@@ -28,33 +28,30 @@ void fast_io() {
     cin.tie(nullptr);
 }
 
+void print(vector<int> &x){
+    int n = x.size();
+    for(auto k: x){
+        cout << k << " ";
+    }
+    cout << endl;
+}
 // Main solve function for each test case
-void ans(string sol, int idx1, int idx2) {
-    cout << sol << endl << idx1 << " " << idx2 << endl;
-}
 
-void ans(string sol){
-    cout << sol << endl;
-}
 void solve() {
     int n;
     cin >> n;
-    string s;
-    cin >> s;
-    for(int i=1;i<n;i++){
-        if(s[i] < s[i-1]){
-            ans("YES", i, i+1); 
-            return;
-        }
+    vector<int> a(n);
+    for(auto &x: a){
+        cin >> x;
     }
-    ans("NO");
-
+    sort(a.rbegin(), a.rend());
+    print(a);
 }
 
 int main() {
     fast_io();
     int t = 1;
     // Uncomment the next line if multiple test cases exist:
-    // cin >> t;
+    cin >> t;
     while (t--) solve();
 }
