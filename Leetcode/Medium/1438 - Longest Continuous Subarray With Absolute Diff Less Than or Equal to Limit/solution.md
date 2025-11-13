@@ -30,3 +30,32 @@ public:
     }
 };
 ```
+
+## ❌ Why Variable Tracking Fails
+- Using `minElem` and `maxElem` only:
+  - Becomes **stale** when elements leave the window.
+  - Resetting or incrementing `l` loses information or requires rescanning.
+- Example: `nums = [10,1,2,4,7,2], limit = 5` → misses `[2,4,7,2]`.
+- Complexity: O(n²) if recomputing min/max.
+
+---
+
+## Two Deques Solution
+Use **two monotonic deques**:
+1. `maxDeque` — decreasing order, front = current max.
+2. `minDeque` — increasing order, front = current min.
+
+**Steps:**
+1. Add `nums[r]`:
+   - Pop smaller (maxDeque) / larger (minDeque) from back.
+   - Push `nums[r]` to back.
+2. If `maxDeque.front() - minDeque.front() > limit`:
+   - Shrink window: `l++`.
+   - Remove leaving elements from deque fronts.
+
+**Benefits:**
+- Always up-to-date min/max in O(1).
+- Efficient window shrinking/expanding.
+- Overall O(n) time complexity.
+
+---
